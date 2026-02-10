@@ -22,7 +22,7 @@ services:
     volumes:
       - ./backend:/app
     environment:
-      DATABASE_URL: postgresql://user:password@db:5432/lang_db
+      - DATABASE_URL=postgresql://user:password@db:5432/lang_db
     depends_on:
       - db
 
@@ -33,6 +33,7 @@ services:
       - "5173:5173"
     volumes:
       - ./frontend:/app
+      - /app/node_modules # <-- TRUCO: Volumen anónimo para evitar conflictos de arquitectura
     stdin_open: true
     tty: true
 
